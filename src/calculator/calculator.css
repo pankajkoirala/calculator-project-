@@ -1,8 +1,9 @@
-.BT{
+.bt{
     height: 50px;
     width: 100px;
    
 }
 .dp{
-    margin: 10px;
+    height: 50px;
+    width: 300px;
 }

@@ -33,9 +33,6 @@ let Calculator = () => {
     }
   };
 
- 
-    
-  
   return (
     <div>
       <div className="m-3">
@@ -69,56 +66,68 @@ let Calculator = () => {
         >
           add
         </button>
-        <button onClick={()=>{
-           setans("");
-           if (!first) {
-             setfirst(hold);
-             sethold("");
-           } else if (first && !second) {
-             setsecond(hold);
-             operation(first, hold);
-           } else if (first && second) {
-             setfirst(parseFloat(first) - parseFloat(second));
-             setsecond("");
-           }
+        <button
+          onClick={() => {
+            setans("");
+            if (!first) {
+              setfirst(hold);
+              sethold("");
+            } else if (first && !second) {
+              setsecond(hold);
+              operation(first, hold);
+            } else if (first && second) {
+              setfirst(parseFloat(first) - parseFloat(second));
+              setsecond("");
+            }
 
-           sethold("");
-           setsign("-");
-        }}>subtract</button>
-        <button onClick={()=>{
-           setans("");
-           if (!first) {
-             setfirst(hold);
-             sethold("");
-           } else if (first && !second) {
-             setsecond(hold);
-             operation(first, hold);
-           } else if (first && second) {
-             setfirst(parseFloat(first) * parseFloat(second));
-             setsecond("");
-           }
+            sethold("");
+            setsign("-");
+          }}
+        >
+          subtract
+        </button>
+        <button
+          onClick={() => {
+            setans("");
+            if (!first) {
+              setfirst(hold);
+              sethold("");
+            } else if (first && !second) {
+              setsecond(hold);
+              operation(first, hold);
+            } else if (first && second) {
+              setfirst(parseFloat(first) * parseFloat(second));
+              setsecond("");
+            }
 
-           sethold("");
-           setsign("*");
-        }}>multiply</button>
+            sethold("");
+            setsign("*");
+          }}
+        >
+          multiply
+        </button>
       </div>
       <div className="m-3">
-        <button onClick={()=>{
-           setans("");
-           if (!first) {
-             setfirst(hold);
-             sethold("");
-           } else if (first && !second) {
-             setsecond(hold);
-             operation(first, hold);
-           } else if (first && second) {
-             setfirst(parseFloat(first) / parseFloat(second));
-             setsecond("");
-           }
+        <button
+          onClick={() => {
+            setans("");
+            if (!first) {
+              setfirst(hold);
+              sethold("");
+            } else if (first && !second) {
+              setsecond(hold);
+              operation(first, hold);
+            } else if (first && second) {
+              setfirst(parseFloat(first) / parseFloat(second));
+              setsecond("");
+            }
 
-           sethold("");
-           setsign("/");
-        }}>divide</button>
+            sethold("");
+            setsign("/");
+          }}
+        >
+          divide
+        </button>
         <button
           onClick={() => {
             if (first && second) {
