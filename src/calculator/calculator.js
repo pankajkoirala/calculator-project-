@@ -1,151 +1,339 @@
-import React from "react";
-import { useState } from "react";
-import "../calculator/calculator.css";
+import React, { useState } from "react"
+import "./calculator.css"
 
-let Calculator = () => {
-  const [first, setfirst] = useState("");
-  const [second, setsecond] = useState("");
-  const [sign, setsign] = useState("");
-  const [ans, setans] = useState("");
-  const [hold, sethold] = useState("");
-  console.log("hold", hold);
-  console.log("first", first);
-  console.log("second", second);
-  console.log("ans", ans);
+let RemakeCalculator = () => {
+  const [A, setA] = useState("")
+  const [B, setB] = useState("")
+  const [C, setC] = useState("")
+  const [H, setH] = useState("")
+  const [S, setS] = useState("")
+  console.log("A", A)
+  console.log("b", B)
+  console.log("C", C)
+  console.log("H", H)
+  console.log("S", S)
 
   let operation = (a, b) => {
-    switch (sign) {
+    switch (S) {
       case "+":
-        setans(parseFloat(a) + parseFloat(b));
-        break;
+        setC(parseFloat(a) + parseFloat(b))
+
+        break
       case "-":
-        setans(parseFloat(a) - parseFloat(b));
-        break;
+        setC(parseFloat(a) - parseFloat(b))
+
+        break
       case "*":
-        setans(parseFloat(a) * parseFloat(b));
-        break;
+        setC(parseFloat(a) * parseFloat(b))
+
+        break
       case "/":
-        setans(parseFloat(a) / parseFloat(b));
-        break;
+        setC(parseFloat(a) / parseFloat(b))
+
+        break
 
       default:
-        break;
+        break
     }
-  };
-
+  }
+  const value = () => {
+    if (A && B && C && S) {
+      return C
+    } else if (A && S && !H) {
+      return A
+    } else if (A && S && H) {
+      return H
+    } else {
+      return H
+    }
+  }
   return (
-    <div>
-      <div className="m-3">
+    <div className="container  ">
+      <div className=" d-flex justify-content-center">
         <input
+          className="m-4 dp  "
           type="number"
-          onChange={(e) => {
-            sethold(e.target.value);
-          }}
           placeholder="type number"
-          value={hold}
+          onChange={(e) => {
+            if (A && B && C) {
+              setB("")
+              setA("")
+              setC("")
+              setS("")
+              setH("")
+            } else setH(e.target.value)
+          }}
+          value={value()}
         />
       </div>
-      <div className="m-3">
-        <button
-          onClick={() => {
-            setans("");
-            if (!first) {
-              setfirst(hold);
-              sethold("");
-            } else if (first && !second) {
-              setsecond(hold);
-              operation(first, hold);
-            } else if (first && second) {
-              setfirst(parseFloat(first) + parseFloat(second));
-              setsecond("");
-            }
-
-            sethold("");
-            setsign("+");
-          }}
-        >
-          add
-        </button>
-        <button
-          onClick={() => {
-            setans("");
-            if (!first) {
-              setfirst(hold);
-              sethold("");
-            } else if (first && !second) {
-              setsecond(hold);
-              operation(first, hold);
-            } else if (first && second) {
-              setfirst(parseFloat(first) - parseFloat(second));
-              setsecond("");
-            }
-
-            sethold("");
-            setsign("-");
-          }}
-        >
-          subtract
-        </button>
-        <button
-          onClick={() => {
-            setans("");
-            if (!first) {
-              setfirst(hold);
-              sethold("");
-            } else if (first && !second) {
-              setsecond(hold);
-              operation(first, hold);
-            } else if (first && second) {
-              setfirst(parseFloat(first) * parseFloat(second));
-              setsecond("");
-            }
-
-            sethold("");
-            setsign("*");
-          }}
-        >
-          multiply
-        </button>
-      </div>
-      <div className="m-3">
-        <button
-          onClick={() => {
-            setans("");
-            if (!first) {
-              setfirst(hold);
-              sethold("");
-            } else if (first && !second) {
-              setsecond(hold);
-              operation(first, hold);
-            } else if (first && second) {
-              setfirst(parseFloat(first) / parseFloat(second));
-              setsecond("");
-            }
-
-            sethold("");
-            setsign("/");
-          }}
-        >
-          divide
-        </button>
-        <button
-          onClick={() => {
-            if (first && second) {
-              operation(first, second);
-            } else if (first && hold) {
-              setsecond(hold);
-              operation(first, hold);
-            }
-          }}
-        >
-          equal
-        </button>
-        <button>cancle</button>
-      </div>
       <div>
-        {first} {sign} {second} {ans ? `= ${ans}` : ""}
+        <div className="d-flex justify-content-center">
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 1)
+            }}
+          >
+            1
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 2)
+            }}
+          >
+            2
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 3)
+            }}
+          >
+            3
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA(C)
+                setB("")
+                setC("")
+                setH("")
+              } else if (!A && H) {
+                setA(H)
+                setH("")
+              } else if (C) {
+                setA(C)
+                setH("")
+                setB("")
+              }
+
+              setS("+")
+              setH("")
+            }}
+          >
+            +
+          </button>
+        </div>
+        <div className="d-flex justify-content-center">
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 4)
+            }}
+          >
+            4
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 5)
+            }}
+          >
+            {" "}
+            5
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 6)
+            }}
+          >
+            6
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA(C)
+                setB("")
+                setC("")
+                setH("")
+              } else if (!A && H) {
+                setA(H)
+                setH("")
+              } else if (C) {
+                setA(C)
+                setH("")
+                setB("")
+              }
+
+              setS("-")
+              setH("")
+            }}
+          >
+            -
+          </button>
+        </div>
+        <div className="d-flex justify-content-center">
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 7)
+            }}
+          >
+            7
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 8)
+            }}
+          >
+            8
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10 + 9)
+            }}
+          >
+            9
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA(C)
+                setB("")
+                setC("")
+                setH("")
+              } else if (!A && H) {
+                setA(H)
+                setH("")
+              } else if (C) {
+                setA(C)
+                setH("")
+                setB("")
+              }
+
+              setS("*")
+              setH("")
+            }}
+          >
+            *
+          </button>
+        </div>
+        <div className="d-flex justify-content-center">
+          <button
+            className="bt"
+            onClick={() => {
+              setB("")
+              setA("")
+              setC("")
+              setS("")
+              setH("")
+            }}
+          >
+            C
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA("")
+                setB("")
+                setC("")
+                setS("")
+              }
+              setH(H * 10)
+            }}
+          >
+            0
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && H) {
+                setB(H)
+                setH("")
+                operation(A, H)
+              }
+            }}
+          >
+            =
+          </button>
+          <button
+            className="bt"
+            onClick={() => {
+              if (A && B && C && S) {
+                setA(C)
+                setB("")
+                setC("")
+                setH("")
+              } else if (!A && H) {
+                setA(H)
+                setH("")
+              } else if (C) {
+                setA(C)
+                setH("")
+                setB("")
+              }
+
+              setS("/")
+              setH("")
+            }}
+          >
+            /
+          </button>
+        </div>
       </div>
     </div>
-  );
-};
-export default Calculator;
+  )
+}
+export default RemakeCalculator

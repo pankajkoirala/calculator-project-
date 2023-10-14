@@ -1,16 +1,14 @@
-import React from "react";
+import React from "react"
 
-import "./App.css";
+import "./App.css"
 
-
-import NewCalculator from "./calculator/remakeCalculator"
+import NewCalculator from "./calculator/calculator"
 function App() {
   return (
-    <div >
-   
-      <NewCalculator/>
+    <div>
+      <NewCalculator />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
